@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import '../styles/About.css';
 import { Helmet } from 'react-helmet-async';
@@ -246,9 +247,9 @@ const About = () => {
               <p className="cta-description">
                 Let's discuss how AI automation can transform your business operations and drive sustainable growth.
               </p>
-              <a href="/contact" className="btn btn-accent btn-large">
+              <Link to="/contact" className="btn btn-accent btn-large">
                 Schedule Your Free Consultation
-              </a>
+              </Link>
             </div>
           </div>
         </section>
