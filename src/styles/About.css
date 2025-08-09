@@ -1,0 +1,383 @@
+/* About Page Styles */
+
+/* About Hero Section */
+.about-hero {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  color: white;
+  padding: 6rem 0 4rem;
+  text-align: center;
+}
+
+.about-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.about-subtitle {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Mission Section */
+.mission-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.mission-description p {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.mission-description p:last-child {
+  margin-bottom: 0;
+}
+
+.mission-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mission-image-placeholder {
+  width: 100%;
+  max-width: 400px;
+  height: 300px;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-large);
+}
+
+/* Ensure About mission image shows fully */
+.mission-image-placeholder img.mission-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* fill the container entirely */
+  display: block;
+}
+
+/* Removed unused decorative classes (.mission-visual, .automation-flow, .flow-node, .node-*, .flow-connection, .connection-*) */
+
+/* Values Section */
+.values {
+  background-color: var(--background-secondary);
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.value-card {
+  text-align: center;
+  padding: 2.5rem 2rem;
+}
+
+.value-icon {
+  width: 80px;
+  height: 80px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: white;
+}
+
+.value-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.value-description {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Team Section */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 3rem;
+}
+
+.team-card {
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.team-image {
+  margin-bottom: 2rem;
+}
+
+.team-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 0 auto;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-medium);
+}
+
+.photo-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.team-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.team-role {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+}
+
+.team-bio {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.linkedin-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.linkedin-link:hover {
+  color: var(--primary-light);
+}
+
+/* Approach Section */
+.approach {
+  background-color: var(--background-secondary);
+}
+
+.approach-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.step {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.step-number {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.step-content {
+  flex: 1;
+}
+
+.step-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.step-description {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+/* About CTA Section */
+.about-cta {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  color: white;
+}
+
+.about-cta .cta-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.about-cta .cta-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.about-cta .cta-description {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .mission-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .mission-image {
+    order: -1;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-hero {
+    padding: 4rem 0 3rem;
+  }
+
+  .about-title {
+    font-size: 2.5rem;
+  }
+
+  .about-subtitle {
+    font-size: 1.125rem;
+  }
+
+  .mission-image-placeholder {
+    max-width: 300px;
+    height: 250px;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .step {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .step-number {
+    margin: 0 auto;
+  }
+
+  .about-cta .cta-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero {
+    padding: 3rem 0 2rem;
+  }
+
+  .about-title {
+    font-size: 2rem;
+  }
+
+  .about-subtitle {
+    font-size: 1rem;
+  }
+
+  .mission-description p {
+    font-size: 1rem;
+  }
+
+  .mission-image-placeholder {
+    max-width: 280px;
+    height: 200px;
+  }
+
+  .value-card,
+  .team-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .team-photo {
+    width: 120px;
+    height: 120px;
+  }
+
+  .team-name {
+    font-size: 1.25rem;
+  }
+
+  .step-title {
+    font-size: 1.25rem;
+  }
+
+  .step-description {
+    font-size: 1rem;
+  }
+
+  .about-cta .cta-title {
+    font-size: 1.75rem;
+  }
+
+  .about-cta .cta-description {
+    font-size: 1rem;
+  }
+}
+
+.team-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.team-photo {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  /*border: 4px solid #2e6e63;*/
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}

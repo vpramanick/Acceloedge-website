@@ -1,0 +1,10 @@
+# robots.txt for Acceloedge
+# Replace https://your-domain.com with your live site URL after deployment.
+User-agent: *
+Allow: /
+
+# Disallow common private paths (none for this static site, add if needed)
+# Disallow: /admin/
+# Disallow: /api/
+
+Sitemap: https://your-domain.com/sitemap.xml
