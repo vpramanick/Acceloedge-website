@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 
 import '../styles/Contact.css';
 import { Helmet } from 'react-helmet-async';
@@ -9,10 +10,7 @@ const Contact = () => {
     email: '',
     message: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', or null
-  const getWebhookUrl = () => import.meta.env.VITE_N8N_WEBHOOK_PATH;
-  const webhookConfigured = Boolean(getWebhookUrl());
+  const [state, handleSubmit] = useForm("manbanbj");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -22,43 +20,12 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus(null);
-
-    try {
-      // Use env-configured absolute URL (http/https). Set VITE_N8N_WEBHOOK_PATH accordingly.
-      const webhookUrl = getWebhookUrl();
-      if (!webhookUrl) throw new Error('Missing VITE_N8N_WEBHOOK_PATH');
-      
-      const response = await fetch(webhookUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formData,
-          timestamp: new Date().toISOString(),
-          source: 'website_contact_form'
-        }),
-      });
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', message: '' });
-      } else {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-    } catch (error) {
-      console.error('Form submission error:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
+  // Clear form after a successful submission
+  useEffect(() => {
+    if (state.succeeded) {
+      setFormData({ name: '', email: '', message: '' });
     }
-  };
-
-  // dev-only test webhook logic removed
+  }, [state.succeeded]);
 
   return (
     <>
@@ -151,7 +118,7 @@ const Contact = () => {
 
               <div className="contact-form-container">
                 <form className="contact-form" onSubmit={handleSubmit}>
-                  {submitStatus === 'success' && (
+                  {state.succeeded && (
                     <div className="message message-success">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <polyline points="20,6 9,17 4,12"/>
@@ -160,14 +127,14 @@ const Contact = () => {
                     </div>
                   )}
 
-                  {submitStatus === 'error' && (
+                  {state.errors && state.errors.length > 0 && (
                     <div className="message message-error">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <circle cx="12" cy="12" r="10"/>
                         <line x1="15" y1="9" x2="9" y2="15"/>
                         <line x1="9" y1="9" x2="15" y2="15"/>
                       </svg>
-                      Sorry, there was an error sending your message. Please try again or contact us directly.
+                      Sorry, there was an error sending your message. Please check the fields and try again.
                     </div>
                   )}
 
@@ -187,6 +154,8 @@ const Contact = () => {
                     />
                   </div>
 
+                  <ValidationError prefix="Email" field="email" errors={state.errors} />
+
                   <div className="form-group">
                     <label htmlFor="email" className="form-label">
                       Email Address *
@@ -202,6 +171,8 @@ const Contact = () => {
                       placeholder="Enter your email address"
                     />
                   </div>
+
+                  <ValidationError prefix="Message" field="message" errors={state.errors} />
 
                   <div className="form-group">
                     <label htmlFor="message" className="form-label">
@@ -221,10 +192,10 @@ const Contact = () => {
 
                   <button
                     type="submit"
-                    className={`btn btn-primary btn-large form-submit ${isSubmitting ? 'loading' : ''}`}
-                    disabled={isSubmitting || !webhookConfigured}
+                    className={`btn btn-primary btn-large form-submit ${state.submitting ? 'loading' : ''}`}
+                    disabled={state.submitting}
                   >
-                    {isSubmitting ? (
+                    {state.submitting ? (
                       <>
                         <svg className="loading-spinner" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <path d="M21 12a9 9 0 11-6.219-8.56"/>
@@ -232,18 +203,14 @@ const Contact = () => {
                         Sending...
                       </>
                     ) : (
-                      webhookConfigured ? 'Send Message' : 'Send Message (disabled)'
+                      'Send Message'
                     )}
                   </button>
 
                   <p className="form-note">
                     * Required fields. We respect your privacy and will never share your information.
                   </p>
-                  {!webhookConfigured && (
-                    <p className="form-note" style={{ color: '#a00' }}>
-                      Submissions disabled locally. Set VITE_N8N_WEBHOOK_PATH in production to enable.
-                    </p>
-                  )}
+                  {/* Powered by Formspree */}
                 </form>
               </div>
             </div>

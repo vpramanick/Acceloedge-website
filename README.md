@@ -8,7 +8,7 @@ A modern, responsive React website for an AI automation agency built with Vite, 
 - **Responsive Layout**: Mobile-first design that works on all devices
 - **SEO Optimized**: React Helmet Async for dynamic meta tags and titles
 - **Fast Navigation**: React Router for smooth page transitions
-- **Contact Form**: Integrated contact form with n8n webhook support
+- **Contact Form**: Built-in contact form with client-side submission and success/error states
 - **Google Analytics**: GA4 integration ready
 - **Accessibility**: WCAG compliant with proper semantic HTML
 
@@ -72,30 +72,13 @@ acceloedge-website/
 
 ## ⚙️ Configuration
 
-### Environment variables
-- VITE_N8N_WEBHOOK_PATH
-   - What: Absolute URL to your n8n Webhook (Production URL, e.g., https://n8n.yourdomain.com/webhook/contact-form)
-   - When required: At production build/deploy time
-   - Behavior if missing: Contact form submit is disabled (intended for local dev)
-
-
 ### Google Analytics
 1. Open `index.html`
 2. Replace `G-XXXXXXXXXX` with your actual Google Analytics 4 Measurement ID
 3. Uncomment the Google Analytics script if needed
 
-### Contact Form (n8n Webhook)
-1. Open `src/pages/Contact.jsx`
-2. Production-only configuration: Set an absolute URL in your deployment environment so the site can submit directly to n8n.
-
-   VITE_N8N_WEBHOOK_PATH=https://n8n.yourdomain.com/webhook/contact-form
-
-   Notes:
-   - Use the Webhook node’s Production URL (workflow activated), which uses `/webhook/...` (not `/webhook-test/...`).
-   - If this variable isn’t set at build time, the Contact form submit button will be disabled (intended for local dev).
-   - No dev proxy is used; browser calls go directly to your n8n endpoint in production.
-
-3. Local development: Submissions are disabled by design. This keeps local dev simple and avoids CORS. If you must test locally, set `VITE_N8N_WEBHOOK_PATH` to a local n8n absolute URL and restart the dev server.
+### Contact Form
+The contact form is wired for client-side submission only (no external services). It displays a loading state and then a success or error message. Replace the submit logic in `src/pages/Contact.jsx` with your preferred backend call if needed.
 
 ### Favicon
 - Replace `public/favicon.svg` with your custom favicon
@@ -129,20 +112,13 @@ The website uses Inter font from Google Fonts. You can change this in `index.htm
 1. Install Vercel CLI: `npm i -g vercel`
 2. Run: `vercel`
 3. Follow the prompts
- 4. Add environment variable in Vercel Project Settings → Environment Variables:
-    - KEY: `VITE_N8N_WEBHOOK_PATH`
-    - VALUE: `https://n8n.yourdomain.com/webhook/contact-form`
-    - Scope: Production (and Preview if needed)
- 5. Redeploy for changes to take effect
+ 4. Deploy. No environment variables are required for the default setup.
 
 ### Netlify
 1. Build the project: `npm run build`
 2. Drag and drop the `dist` folder to Netlify
 3. Or connect your Git repository for automatic deployments
- 4. In Netlify Site Settings → Environment variables, add:
-    - KEY: `VITE_N8N_WEBHOOK_PATH`
-    - VALUE: `https://n8n.yourdomain.com/webhook/contact-form`
- 5. Trigger a new deploy
+ 4. Deploy. No environment variables are required for the default setup.
 
 ### Other Platforms
 The built files are in the `dist` folder after running `npm run build`. Upload these files to any static hosting service.
