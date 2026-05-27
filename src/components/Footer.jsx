@@ -81,12 +81,6 @@ const Footer = () => {
                   business@acceloedge.com
                 </a>
               </p>
-              <p className="contact-item">
-                <span className="contact-label">Phone:</span>
-                <a href="tel:+46765069770" className="contact-link">
-                  +46 765069770
-                </a>
-              </p>
             </div>
           </div>
         </div>

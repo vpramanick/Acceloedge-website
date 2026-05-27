@@ -159,7 +159,6 @@ The built files are in the `dist` folder after running `npm run build`. Upload t
 
 For questions about this website template or customization needs, please contact:
 - Email: business@acceloedge.com
-- Phone: +46 765069770
 
 ## 📄 License
 

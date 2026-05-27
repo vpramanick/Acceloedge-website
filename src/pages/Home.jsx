@@ -7,17 +7,6 @@ import { Helmet } from 'react-helmet-async';
 const Home = () => {
   const useCases = [
     {
-      title: "Retail & Small Shops",
-      description: "AI cash register assistants, inventory alerts, and personalized product recommendations.",
-      outcome: "Faster checkouts, lower stockouts, and increased sales through smart upselling."
-    },
-    
-    {
-      title: "Human Resources",
-      description: "AI agents for candidate screening, interview scheduling, onboarding workflows, and employee FAQs.",
-      outcome: "Shorter hiring cycles, consistent onboarding, and better employee experience with minimal HR overhead."
-    },
-    {
       title: "Social Media & Content Strategy",
       description: "AI agents to generate content ideas, write and schedule posts, analyze engagement, and reply to comments/messages.",
       outcome: "Stronger brand presence with consistent output and real-time audience interaction—without hiring a full-time marketer."
@@ -30,13 +19,13 @@ const Home = () => {
     },
     {
       title: "Healthcare & Wellness Clinics",
-      description: "Appointment management bots, post-visit follow-ups, and AI-based symptom checkers.",
-      outcome: "Improved patient retention and operational efficiency with fewer front-desk calls."
+      description: "AI-powered appointment scheduling and management systems that handle booking, rescheduling, cancellations, and automated patient reminders.",
+      outcome: "Streamlined scheduling process, reduced no-shows, and improved operational efficiency with minimal administrative overhead."
     },
     {
-      title: "Education & Coaching",
-      description: "Virtual teaching assistants that handle student FAQs, progress tracking, and personalized content delivery.",
-      outcome: "Higher engagement and retention with scalable, customized support."
+      title: "Customer Support & Service",
+      description: "AI-powered chatbots and virtual assistants that provide 24/7 customer support, handle common inquiries, process requests, and seamlessly escalate complex issues to human agents.",
+      outcome: "Reduced response times, improved customer satisfaction, and lower support costs with round-the-clock availability."
     }
   ];
 
@@ -122,8 +111,8 @@ const Home = () => {
                   compromising quality, speed, or customer experience.
                 </p>
                 <div className="hero-cta slide-up">
-                  <Link to="/contact" className="btn btn-primary btn-large">
-                    Get Free Consultation
+                  <Link to="/products" className="btn btn-secondary btn-large">
+                    Our Products
                   </Link>
                   <Link to="/about" className="btn btn-secondary btn-large">
                     Learn More

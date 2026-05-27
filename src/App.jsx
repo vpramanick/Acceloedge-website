@@ -11,6 +11,9 @@ import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Products from './pages/Products';
+import AIChatBot from './pages/AIChatBot'; // Component name is internal - users don't see this
+import AIScheduler from './pages/AIScheduler';
 
 // Styles
 import './styles/global.css';
@@ -31,6 +34,9 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/ai-chatbot" element={<AIChatBot />} />
+              <Route path="/ai-scheduler" element={<AIScheduler />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
           </main>

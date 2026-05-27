@@ -1,14 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import '../styles/Header.css';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
   const location = useLocation();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const toggleProductsDropdown = () => {
+    setIsProductsDropdownOpen(!isProductsDropdownOpen);
+  };
+
+  const closeProductsDropdown = () => {
+    setIsProductsDropdownOpen(false);
+  };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest('.nav-dropdown')) {
+        setIsProductsDropdownOpen(false);
+      }
+    };
+
+    if (isProductsDropdownOpen) {
+      document.addEventListener('click', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [isProductsDropdownOpen]);
 
   const isActive = (path) => {
     return location.pathname === path;
@@ -56,6 +82,37 @@ const Header = () => {
             >
               Home
             </Link>
+            
+            {/* Products Dropdown */}
+            <div className="nav-dropdown" onMouseLeave={closeProductsDropdown}>
+              <div className="dropdown-trigger-wrapper">
+                <Link 
+                  to="/products" 
+                  className={`nav-link dropdown-main-link ${isActive('/products') || isActive('/ai-chatbot') || isActive('/ai-scheduler') ? 'active' : ''}`}
+                >
+                  Products
+                </Link>
+                <button 
+                  className="dropdown-arrow-btn"
+                  onMouseEnter={toggleProductsDropdown}
+                  onClick={toggleProductsDropdown}
+                  aria-label="Toggle products menu"
+                >
+                  <svg className={`dropdown-arrow ${isProductsDropdownOpen ? 'open' : ''}`} width="12" height="8" viewBox="0 0 12 8" fill="none">
+                    <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+              <div className={`dropdown-menu ${isProductsDropdownOpen ? 'open' : ''}`}>
+                <Link to="/ai-chatbot" className="dropdown-item" onClick={closeProductsDropdown}>
+                  dAIlogue
+                </Link>
+                <Link to="/ai-scheduler" className="dropdown-item" onClick={closeProductsDropdown}>
+                  AI Scheduler
+                </Link>
+              </div>
+            </div>
+            
             <Link 
               to="/about" 
               className={`nav-link ${isActive('/about') ? 'active' : ''}`}
@@ -98,6 +155,32 @@ const Header = () => {
           >
             Home
           </Link>
+          
+          {/* Mobile Products Section */}
+          <div className="mobile-dropdown">
+            <Link 
+              to="/products" 
+              className={`nav-link-mobile dropdown-header ${isActive('/products') || isActive('/ai-chatbot') || isActive('/ai-scheduler') ? 'active' : ''}`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Products
+            </Link>
+            <Link 
+              to="/ai-chatbot" 
+              className="nav-link-mobile dropdown-item-mobile"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              dAIlogue
+            </Link>
+            <Link 
+              to="/ai-scheduler" 
+              className="nav-link-mobile dropdown-item-mobile"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              AI Scheduler
+            </Link>
+          </div>
+          
           <Link 
             to="/about" 
             className={`nav-link-mobile ${isActive('/about') ? 'active' : ''}`}

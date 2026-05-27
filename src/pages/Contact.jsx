@@ -11,6 +11,7 @@ const Contact = () => {
     message: ''
   });
   const [state, handleSubmit] = useForm("manbanbj");
+  const [activeFaq, setActiveFaq] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -26,6 +27,10 @@ const Contact = () => {
       setFormData({ name: '', email: '', message: '' });
     }
   }, [state.succeeded]);
+
+  const toggleFaq = (index) => {
+    setActiveFaq(activeFaq === index ? null : index);
+  };
 
   return (
     <>
@@ -73,18 +78,6 @@ const Contact = () => {
                     <div className="contact-detail-content">
                       <h3 className="contact-detail-title">Email</h3>
                       <p className="contact-detail-text">business@acceloedge.com</p>
-                    </div>
-                  </div>
-
-                  <div className="contact-detail">
-                    <div className="contact-icon">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                      </svg>
-                    </div>
-                    <div className="contact-detail-content">
-                      <h3 className="contact-detail-title">Phone</h3>
-                      <p className="contact-detail-text">+46 765069770</p>
                     </div>
                   </div>
 
@@ -217,7 +210,7 @@ const Contact = () => {
           </div>
         </section>
         {/* FAQ Section */}
-        <section className="faq section">
+        <section className="faq-section section">
           <div className="container">
             <div className="section-header text-center">
               <h2 className="section-title">Frequently Asked Questions</h2>
@@ -225,27 +218,35 @@ const Contact = () => {
                 Common questions about our AI automation services
               </p>
             </div>
-            <div className="faq-grid">
-              <div className="faq-item">
-                <h3 className="faq-question">How long does it take to implement AI automation?</h3>
-                <p className="faq-answer">
-                  Implementation timelines vary based on complexity, but most projects are completed within 4-8 weeks. 
-                  We'll provide a detailed timeline during your free consultation.
-                </p>
+            <div className="faq-container">
+              <div className={`faq-item ${activeFaq === 0 ? 'active' : ''}`}>
+                <button className="faq-question" onClick={() => toggleFaq(0)}>
+                  <span>How long does it take to implement AI automation?</span>
+                  <span className="faq-icon">{activeFaq === 0 ? '−' : '+'}</span>
+                </button>
+                <div className="faq-answer">
+                  <p>Implementation timelines vary based on complexity, but most projects are completed within 4-8 weeks. We'll provide a detailed timeline during your free consultation.</p>
+                </div>
               </div>
-              <div className="faq-item">
-                <h3 className="faq-question">Do I need technical expertise to use AI agents?</h3>
-                <p className="faq-answer">
-                  Not at all! We design our AI agents to be user-friendly and integrate seamlessly with your existing tools. 
-                  We also provide comprehensive training to ensure your team is comfortable using the new automation.
-                </p>
+
+              <div className={`faq-item ${activeFaq === 1 ? 'active' : ''}`}>
+                <button className="faq-question" onClick={() => toggleFaq(1)}>
+                  <span>Do I need technical expertise to use AI agents?</span>
+                  <span className="faq-icon">{activeFaq === 1 ? '−' : '+'}</span>
+                </button>
+                <div className="faq-answer">
+                  <p>Not at all! We design our AI agents to be user-friendly and integrate seamlessly with your existing tools. We also provide comprehensive training to ensure your team is comfortable using the new automation.</p>
+                </div>
               </div>
-              <div className="faq-item">
-                <h3 className="faq-question">What if my business processes change?</h3>
-                <p className="faq-answer">
-                  Our AI agents are designed to be flexible and adaptable. We provide ongoing optimization services 
-                  to ensure your automation evolves with your business needs.
-                </p>
+
+              <div className={`faq-item ${activeFaq === 2 ? 'active' : ''}`}>
+                <button className="faq-question" onClick={() => toggleFaq(2)}>
+                  <span>What if my business processes change?</span>
+                  <span className="faq-icon">{activeFaq === 2 ? '−' : '+'}</span>
+                </button>
+                <div className="faq-answer">
+                  <p>Our AI agents are designed to be flexible and adaptable. We provide ongoing optimization services to ensure your automation evolves with your business needs.</p>
+                </div>
               </div>
             </div>
           </div>
