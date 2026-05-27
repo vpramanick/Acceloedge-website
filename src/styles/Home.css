@@ -21,11 +21,16 @@
 }
 
 .hero-title {
-  font-size: 3.5rem;
+  font-size: clamp(2.5rem, 4.5vw, 3.5rem);
   font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 1rem;
+  line-height: 1.18;
+  margin-bottom: 1.25rem;
   color: var(--text-primary);
+}
+
+.hero-title-accent {
+  color: var(--primary-color);
+  display: inline;
 }
 
 .hero-subtitle {

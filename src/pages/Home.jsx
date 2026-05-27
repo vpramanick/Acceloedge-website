@@ -100,11 +100,9 @@ const Home = () => {
             <div className="hero-content">
               <div className="hero-text">
                 <h1 className="hero-title fade-in">
-                  Transform Your Business
+                  Transform Your Business{' '}
+                  <span className="hero-title-accent">through AI Automation</span>
                 </h1>
-                <p className="hero-subtitle slide-up">
-                  Empowering Small Businesses Through AI Automation
-                </p>
                 <p className="hero-description slide-up">
                   Unlock Efficiency, Scale Smartly, and Stay Ahead with Tailored AI Solutions. 
                   In today's digital-first economy, small businesses must do more with less—without 
