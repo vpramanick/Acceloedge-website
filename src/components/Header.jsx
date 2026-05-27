@@ -4,10 +4,25 @@ import '../styles/Header.css';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
   const location = useLocation();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const openProductsDropdown = () => {
+    setIsProductsDropdownOpen(true);
+  };
+
+  const closeProductsDropdown = () => {
+    setIsProductsDropdownOpen(false);
+  };
+
+  const handleProductsBlur = (event) => {
+    if (!event.currentTarget.contains(event.relatedTarget)) {
+      closeProductsDropdown();
+    }
   };
 
   const isActive = (path) => {
@@ -58,18 +73,25 @@ const Header = () => {
             </Link>
             
             {/* Products Dropdown */}
-            <div className="nav-dropdown">
+            <div
+              className={`nav-dropdown ${isProductsDropdownOpen ? 'open' : ''}`}
+              onMouseEnter={openProductsDropdown}
+              onMouseLeave={closeProductsDropdown}
+              onFocus={openProductsDropdown}
+              onBlur={handleProductsBlur}
+            >
               <Link 
                 to="/products" 
                 className={`nav-link dropdown-main-link ${isActive('/products') || isActive('/ai-chatbot') || isActive('/ai-scheduler') ? 'active' : ''}`}
+                onClick={closeProductsDropdown}
               >
                 Products
               </Link>
-              <div className="dropdown-menu">
-                <Link to="/ai-chatbot" className="dropdown-item">
+              <div className={`dropdown-menu ${isProductsDropdownOpen ? 'open' : ''}`}>
+                <Link to="/ai-chatbot" className="dropdown-item" onClick={closeProductsDropdown}>
                   dAIlogue
                 </Link>
-                <Link to="/ai-scheduler" className="dropdown-item">
+                <Link to="/ai-scheduler" className="dropdown-item" onClick={closeProductsDropdown}>
                   AI Scheduler
                 </Link>
               </div>

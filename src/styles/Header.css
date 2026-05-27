@@ -96,7 +96,8 @@
 
 .nav-desktop:hover .nav-link:hover::after,
 .nav-desktop:hover .nav-dropdown:hover .dropdown-main-link::after,
-.nav-desktop:hover .nav-dropdown:focus-within .dropdown-main-link::after {
+.nav-desktop:hover .nav-dropdown:focus-within .dropdown-main-link::after,
+.nav-desktop:hover .nav-dropdown.open .dropdown-main-link::after {
   opacity: 1;
 }
 
@@ -127,8 +128,7 @@
   z-index: 1000;
 }
 
-.nav-dropdown:hover .dropdown-menu,
-.nav-dropdown:focus-within .dropdown-menu {
+.nav-dropdown.open .dropdown-menu {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
