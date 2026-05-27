@@ -1,40 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import '../styles/Header.css';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
   const location = useLocation();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
-  const toggleProductsDropdown = () => {
-    setIsProductsDropdownOpen(!isProductsDropdownOpen);
-  };
-
-  const closeProductsDropdown = () => {
-    setIsProductsDropdownOpen(false);
-  };
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (!event.target.closest('.nav-dropdown')) {
-        setIsProductsDropdownOpen(false);
-      }
-    };
-
-    if (isProductsDropdownOpen) {
-      document.addEventListener('click', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, [isProductsDropdownOpen]);
 
   const isActive = (path) => {
     return location.pathname === path;
@@ -84,30 +58,18 @@ const Header = () => {
             </Link>
             
             {/* Products Dropdown */}
-            <div className="nav-dropdown" onMouseLeave={closeProductsDropdown}>
-              <div className="dropdown-trigger-wrapper">
-                <Link 
-                  to="/products" 
-                  className={`nav-link dropdown-main-link ${isActive('/products') || isActive('/ai-chatbot') || isActive('/ai-scheduler') ? 'active' : ''}`}
-                >
-                  Products
-                </Link>
-                <button 
-                  className="dropdown-arrow-btn"
-                  onMouseEnter={toggleProductsDropdown}
-                  onClick={toggleProductsDropdown}
-                  aria-label="Toggle products menu"
-                >
-                  <svg className={`dropdown-arrow ${isProductsDropdownOpen ? 'open' : ''}`} width="12" height="8" viewBox="0 0 12 8" fill="none">
-                    <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
-              </div>
-              <div className={`dropdown-menu ${isProductsDropdownOpen ? 'open' : ''}`}>
-                <Link to="/ai-chatbot" className="dropdown-item" onClick={closeProductsDropdown}>
+            <div className="nav-dropdown">
+              <Link 
+                to="/products" 
+                className={`nav-link dropdown-main-link ${isActive('/products') || isActive('/ai-chatbot') || isActive('/ai-scheduler') ? 'active' : ''}`}
+              >
+                Products
+              </Link>
+              <div className="dropdown-menu">
+                <Link to="/ai-chatbot" className="dropdown-item">
                   dAIlogue
                 </Link>
-                <Link to="/ai-scheduler" className="dropdown-item" onClick={closeProductsDropdown}>
+                <Link to="/ai-scheduler" className="dropdown-item">
                   AI Scheduler
                 </Link>
               </div>
